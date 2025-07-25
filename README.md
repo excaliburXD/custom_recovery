@@ -1,4 +1,4 @@
-# ORFOX Device tree for INFINIX NOTE 10 PRO (X695C/X695)
+# ORFOX Device tree for INFINIX NOTE 10 PRO (X695C/X695D/X695)
 
 * Status: Test works (buildable & bootable)
 * Credits: gilanggegea
