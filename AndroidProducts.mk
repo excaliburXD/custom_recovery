@@ -7,6 +7,6 @@
 #
 
 PRODUCT_MAKEFILES := \
-     $(LOCAL_DIR)/twrp_radiant.mk
+     $(LOCAL_DIR)/fox_radiant.mk
 
-COMMON_LUNCH_CHOICES := twrp_radiant-eng
+COMMON_LUNCH_CHOICES := fox_radiant-eng

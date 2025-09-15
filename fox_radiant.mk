@@ -20,7 +20,7 @@ $(call inherit-product, device/infinix/radiant/device.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := radiant
-PRODUCT_NAME := twrp_radiant
+PRODUCT_NAME := fox_radiant
 PRODUCT_BRAND := Infinix
 PRODUCT_MODEL := Infinix Radiant
 PRODUCT_MANUFACTURER := INFINIX MOBILITY LIMITED
