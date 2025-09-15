@@ -1,6 +1,7 @@
 #
 # Copyright (C) 2024-2025 The Android Open Source Project
 # Copyright (C) 2024-2025 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2024-2025 Orangefox Recovery Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -63,6 +64,23 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd
 
+# MTK plpath utils
+PRODUCT_PACKAGES += \
+    mtk_plpath_utils \
+    mtk_plpath_utils.recovery
+
+# Gatekeeper 
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-service
+
+# Keymaster Beanpod
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0-service.beanpod
+
+# TEE Daemon
+PRODUCT_PACKAGES += \
+    teei_daemon
+
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
@@ -72,3 +90,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
+
+# Additional configs
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.0
+
+TARGET_RECOVERY_DEVICE_MODULES += \
+    android.hardware.keymaster@4.0

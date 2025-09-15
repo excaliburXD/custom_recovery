@@ -9,8 +9,8 @@
 
 # Locale & Device Configuration
 export LC_ALL="C"
-export TARGET_DEVICE_ALT="X695D,X695,Infinix-X695D,Infinix-X695"
-export FOX_TARGET_DEVICES="X695C,X695D,X695,Infinix-X695C,Infinix-X695D,Infinix-X695"
+export TARGET_DEVICE_ALT="X695C,X695D,X695,Infinix-X695D,Infinix-X695"
+export FOX_TARGET_DEVICES="Radiant,X695C,X695D,X695,Infinix-X695C,Infinix-X695D,Infinix-X695"
 
 # Partitions Recovery
 export FOX_RECOVERY_BOOT_PARTITION="/dev/block/platform/bootdevice/by-name/boot"
