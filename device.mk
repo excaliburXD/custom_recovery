@@ -6,26 +6,26 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/infinix/radiant
+LOCAL_PATH := device/infinix/X695C
 
-# VAB
+# Virtual A/B
 ENABLE_VIRTUAL_AB := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-# AB
+# A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
-    system \
-    vendor \
-    product \
-    system_ext \
     boot \
+    dtbo \
     lk \
-    logo \
     preloader \
+    product \
+    system \
+    system_ext \
     vbmeta \
+    vbmeta_system \
     vbmeta_vendor \
-    vbmeta_system
+    vendor
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -39,25 +39,34 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Dynamic Partition
+PRODUCT_PACKAGES += \
+    otapreopt_script \
+    cppreopts.sh
+
+# Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_BUILD_SUPER_PARTITION := true
 
-# VNDK & API
-PRODUCT_TARGET_VNDK_VERSION := 30
+# API
 PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_TARGET_VNDK_VERSION := 30
 
-# Health Hal
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.1-mtkimpl \
+    android.hardware.boot@1.1-mtkimpl.recovery \
+    android.hardware.boot@1.1-mtkimpl-service
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
+
+PRODUCT_PACKAGES += \
+    bootctrl.mt6785 \
+    bootctrl.mt6785.recovery
+
+# Health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
-
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-mtkimpl.recovery \
-    android.hardware.boot@1.1-mtkimpl
-
-PRODUCT_PACKAGES_DEBUG += \
-    bootctrl
 
 # Fastbootd
 PRODUCT_PACKAGES += \
@@ -69,31 +78,24 @@ PRODUCT_PACKAGES += \
     mtk_plpath_utils \
     mtk_plpath_utils.recovery
 
-# Gatekeeper 
+# Update engine
 PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-service
-
-# Keymaster Beanpod
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.0-service.beanpod
-
-# TEE Daemon
-PRODUCT_PACKAGES += \
-    teei_daemon
-
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    cppreopts.sh \
     update_engine \
-    update_verifier \
-    update_engine_sideload
+    update_engine_sideload \
+    update_verifier
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
-# Additional configs
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.0
-
+# Additional Configs
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hardware.keymaster@4.0
+    libkeymaster4 \
+    libkmsetkey \
+    libhardware_legacy \
+    libpuresoftkeymasterdevice
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkmsetkey.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libhardware_legacy.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so

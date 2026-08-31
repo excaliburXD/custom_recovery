@@ -15,14 +15,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Inherit from radiant device
-$(call inherit-product, device/infinix/radiant/device.mk)
+# Inherit from X695C device
+$(call inherit-product, device/infinix/X695C/device.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := radiant
-PRODUCT_NAME := fox_radiant
+PRODUCT_DEVICE := X695C
+PRODUCT_NAME := twrp_X695C
 PRODUCT_BRAND := Infinix
-PRODUCT_MODEL := Infinix Radiant
+PRODUCT_MODEL := Infinix Note 10 Pro
 PRODUCT_MANUFACTURER := INFINIX MOBILITY LIMITED
 
 PRODUCT_GMS_CLIENTID_BASE := android-transsion
